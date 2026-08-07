@@ -149,6 +149,17 @@ nav.scrolled{background:rgba(255,255,255,.85);backdrop-filter:blur(14px);border-
 .price li::before{content:"✓";color:var(--green);font-weight:800;flex-shrink:0}
 .price .btn{justify-content:center}
 
+/* projects */
+.proj-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:44px}
+.proj{background:linear-gradient(180deg,var(--card),var(--card2));border:1px solid var(--line);border-radius:20px;overflow:hidden;transition:.3s;position:relative}
+.proj:hover{transform:translateY(-8px);border-color:rgba(56,232,255,.45);box-shadow:0 22px 50px rgba(0,0,0,.4)}
+.proj .ph{height:150px;display:grid;place-items:center;font-size:52px;background:radial-gradient(120px 120px at 50% 40%,rgba(108,60,240,.4),transparent 70%),linear-gradient(135deg,rgba(56,232,255,.12),rgba(108,60,240,.18))}
+.proj .pb{padding:20px 20px 24px}
+.proj h3{font-size:16.5px;margin-bottom:6px}
+.proj p{color:var(--muted);font-size:13.5px;margin-bottom:14px;min-height:44px}
+.proj .tags{display:flex;gap:6px;flex-wrap:wrap}
+.proj .tags span{font-size:11px;background:rgba(56,232,255,.1);color:var(--cyan);padding:4px 9px;border-radius:999px}
+
 /* team */
 .team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:44px}
 .member{background:linear-gradient(180deg,var(--card),var(--card2));border:1px solid var(--line);border-radius:20px;padding:30px;text-align:center;transition:.3s}
@@ -199,6 +210,7 @@ footer{border-top:1px solid var(--line);padding:60px 0 34px;background:rgba(244,
   .menu-btn{display:block}
   .hero-grid{grid-template-columns:1fr}
   .sol-grid,.team-grid{grid-template-columns:1fr 1fr}
+  .proj-grid{grid-template-columns:1fr 1fr}
   .price-grid,.journey-grid{grid-template-columns:1fr 1fr}
   .paths{grid-template-columns:1fr}
   .float-wrap{display:none}
@@ -206,6 +218,7 @@ footer{border-top:1px solid var(--line);padding:60px 0 34px;background:rgba(244,
 }
 @media(max-width:560px){
   .sol-grid,.team-grid,.price-grid,.journey-grid{grid-template-columns:1fr}
+  .proj-grid{grid-template-columns:1fr}
   .foot{grid-template-columns:1fr}
   .form .row{grid-template-columns:1fr}
 }
@@ -221,6 +234,7 @@ footer{border-top:1px solid var(--line);padding:60px 0 34px;background:rgba(244,
     <div class="logo"><span class="dot">W</span> We<span class="grad-text">WithAll</span></div>
     <div class="nav-links" id="navLinks">
       <a href="#syllabus">Syllabus</a>
+      <a href="#products">Products</a>
       <a href="#paths">Career Paths</a>
       <a href="#pricing">Fees</a>
       <a href="#team">Team</a>
@@ -377,6 +391,25 @@ footer{border-top:1px solid var(--line);padding:60px 0 34px;background:rgba(244,
     <div class="step reveal"><h4>Build Portfolio</h4><p>Ship 25+ industry projects that prove you're job-ready and investor-ready.</p></div>
     <div class="step reveal"><h4>Choose Your Path</h4><p>Pick Placement for a job, or Startup to incorporate and raise funding.</p></div>
     <div class="step reveal"><h4>Guaranteed Success</h4><p>92% placement, or startup launch support. Your outcome is guaranteed.</p></div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section id="products">
+  <div class="container center">
+    <span class="badge">Our Products</span>
+    <h2 class="sec-title">AI Projects <span class="grad-text">We've Built</span></h2>
+    <p class="sub">Every student ships real, production-grade AI products. Here's a showcase of the flagship projects built by our students — across healthcare, finance, e-commerce, and more.</p>
+  </div>
+  <div class="container proj-grid">
+    <div class="proj reveal"><div class="ph">🤖</div><div class="pb"><h3>RAG Legal / Medical Chatbot</h3><p>Production-grade retrieval-augmented chatbot answering legal & medical queries with citations.</p><div class="tags"><span>RAG</span><span>LLM</span><span>VectorDB</span></div></div></div>
+    <div class="proj reveal"><div class="ph">🚗</div><div class="pb"><h3>Autonomous Vehicle Vision</h3><p>Real-time object detection system for self-driving vehicles using CNNs.</p><div class="tags"><span>YOLOv8</span><span>OpenCV</span><span>Vision</span></div></div></div>
+    <div class="proj reveal"><div class="ph">📈</div><div class="pb"><h3>AI Stock Trading Bot</h3><p>Trading bot with live sentiment analysis and market prediction.</p><div class="tags"><span>NLP</span><span>Finance</span><span>Time-series</span></div></div></div>
+    <div class="proj reveal"><div class="ph">🩺</div><div class="pb"><h3>Healthcare Diagnosis AI</h3><p>Medical imaging diagnosis system that flags conditions from X-rays and scans.</p><div class="tags"><span>CNN</span><span>Medical</span><span>Imaging</span></div></div></div>
+    <div class="proj reveal"><div class="ph">🛒</div><div class="pb"><h3>E-Commerce Recommender</h3><p>Recommendation engine like Amazon using collaborative filtering + deep learning.</p><div class="tags"><span>RecSys</span><span>DL</span><span>Big Data</span></div></div></div>
+    <div class="proj reveal"><div class="ph">🎨</div><div class="pb"><h3>GenAI Content Platform</h3><p>Generative AI platform for automated text, image & video content creation.</p><div class="tags"><span>Diffusion</span><span>LLM</span><span>GenAI</span></div></div></div>
+    <div class="proj reveal"><div class="ph">🏦</div><div class="pb"><h3>Banking Fraud Detection</h3><p>Real-time fraud detection for banking transactions with anomaly scoring.</p><div class="tags"><span>ML</span><span>Anomaly</span><span>Finance</span></div></div></div>
+    <div class="proj reveal"><div class="ph">🖼️</div><div class="pb"><h3>Multi-Modal AI System</h3><p>Image + text understanding system that reasons across vision and language.</p><div class="tags"><span>Multimodal</span><span>Vision</span><span>NLP</span></div></div></div>
   </div>
 </section>
 
