@@ -233,6 +233,28 @@ footer{border-top:1px solid var(--line);padding:60px 0 34px;background:rgba(244,
   .foot{grid-template-columns:1fr}
   .form .row{grid-template-columns:1fr}
 }
+/* ---- app detail modal (opened by clicking an app card) ---- */
+.app-card.tappable{cursor:pointer}
+.modal-ov{position:fixed;inset:0;z-index:300;background:rgba(12,15,35,.66);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:22px}
+.modal-ov.open{display:flex}
+.modal-box{background:#fff;border-radius:24px;max-width:900px;width:100%;max-height:88vh;overflow:auto;position:relative;padding:32px 34px 36px;animation:modalIn .3s ease;box-shadow:0 40px 100px rgba(10,12,40,.5)}
+@keyframes modalIn{from{opacity:0;transform:translateY(24px) scale(.97)}to{opacity:1;transform:none}}
+.modal-x{position:absolute;top:14px;right:14px;width:40px;height:40px;border:none;border-radius:12px;background:#f1f2fb;color:#171b33;font-size:20px;cursor:pointer;line-height:1}
+.modal-x:hover{background:#e6e8f8}
+.modal-h2{font-family:'Sora',sans-serif;font-size:26px;font-weight:800;margin:0 0 4px;padding-right:44px}
+.modal-tag{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#6C3CF0;background:rgba(108,60,240,.08);padding:4px 12px;border-radius:999px;margin:6px 0 14px}
+.modal-desc{color:var(--muted);font-size:15px;line-height:1.65;max-width:680px;margin:0 0 16px}
+.modal-chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
+.modal-chips span{font-family:'JetBrains Mono',monospace;font-size:12px;background:#f0f1fa;border:1px solid var(--line);padding:6px 12px;border-radius:999px;color:#3a4168}
+.modal-main{background:#0f1226;border-radius:18px;overflow:hidden;display:flex;justify-content:center;align-items:center;margin-bottom:14px}
+.modal-main img{height:470px;max-width:100%;object-fit:cover;display:block}
+.modal-thumbs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px}
+.modal-thumbs img{height:160px;width:74px;object-fit:cover;border-radius:11px;border:2px solid transparent;cursor:pointer;transition:.2s}
+.modal-thumbs img.active{border-color:var(--purple);box-shadow:0 6px 18px rgba(108,60,240,.3)}
+.modal-thumbs img:hover{transform:translateY(-3px)}
+.modal-cta{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-weight:600;font-size:14px;color:#fff;background:var(--grad);padding:12px 22px;border-radius:13px;box-shadow:0 10px 26px rgba(108,60,240,.32);transition:.25s}
+.modal-cta:hover{transform:translateY(-2px);box-shadow:0 14px 32px rgba(108,60,240,.42)}
+@media(max-width:640px){.modal-main img{height:360px}.modal-box{padding:26px 18px 28px}}
 </style>
 </head>
 <body>
@@ -413,45 +435,46 @@ footer{border-top:1px solid var(--line);padding:60px 0 34px;background:rgba(244,
     <p class="sub">From offline Panchanga to AI-powered career tools — real, shipped Android apps built by We With All, used across India.</p>
   </div>
   <div class="container apps-grid">
-    <div class="app-card reveal">
-      <span class="glow"></span>
-      <div class="phone"><img src="assets/apps/panchang.jpg" alt="Karnataka Panchang app"><div class="notch"></div><div class="bar"></div></div>
-      <div class="app-name">Karnataka <span class="grad">Panchang</span></div>
-      <div class="app-tagline">Offline Hindu Panchang 1991–2035 — Kannada & English, daily muhurta, nakshatra & festivals.</div>
-      <div class="app-tags"><span>Panchang</span><span>Offline</span><span>Kannada</span><span>Muhurta</span></div>
-      <a class="app-link" href="https://play.google.com/store/search?q=Karnataka%20Panchang" target="_blank" rel="noopener">Get App <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
-    </div>
-    <div class="app-card reveal">
-      <span class="glow"></span>
-      <div class="phone"><img src="assets/apps/aiguruji.png" alt="AI Guruji app"><div class="notch"></div><div class="bar"></div></div>
+    <div class="app-card reveal tappable" onclick="openAppModal(0)">
+          <span class="glow"></span>
+          <div class="phone">
+            <img src="assets/shots/panchang/1.png" alt="Karnataka Panchang app"><div class="notch"></div><div class="bar"></div></div>
+          <div class="app-name">Karnataka <span class="grad">Panchang</span></div>
+          <div class="app-tagline">Offline Hindu Panchang 1991–2035 — Kannada & English, daily muhurta, nakshatra & festivals.</div>
+          <div class="app-tags"><span>Panchang</span><span>Offline</span><span>Kannada</span><span>Muhurta</span></div>
+          <a class="app-link" href="https://play.google.com/store/search?q=Karnataka%20Panchang" target="_blank" rel="noopener" onclick="event.stopPropagation()">Get App <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
+        </div>
+    <div class="app-card reveal tappable" onclick="openAppModal(1)">
+          <span class="glow"></span>
+          <div class="phone"><img src="assets/shots/guruji/1.png" alt="AI Guruji app"><div class="notch"></div><div class="bar"></div></div>
       <div class="app-name">AI <span class="grad">Guruji</span></div>
       <div class="app-tagline">Vedic astrology companion — Panchang, Kundli, Nakshatra, Muhurta, Mantra & Remedies, in Kannada & English.</div>
       <div class="app-tags"><span>Kundli</span><span>Nakshatra</span><span>Muhurta</span><span>Bilingual</span></div>
-      <a class="app-link" href="https://play.google.com/store/search?q=AI%20Guruji" target="_blank" rel="noopener">Get App <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
+      <a class="app-link" href="https://play.google.com/store/search?q=AI%20Guruji" target="_blank" rel="noopener" onclick="event.stopPropagation()">Get App <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
     </div>
-    <div class="app-card reveal">
-      <span class="glow"></span>
-      <div class="phone"><img src="assets/apps/codecourse.png" alt="We With All 4 Students app"><div class="notch"></div><div class="bar"></div></div>
+    <div class="app-card reveal tappable" onclick="openAppModal(2)">
+          <span class="glow"></span>
+          <div class="phone"><img src="assets/shots/english/1.png" alt="We With All 4 Students app"><div class="notch"></div><div class="bar"></div></div>
       <div class="app-name">4 <span class="grad">Students</span></div>
       <div class="app-tagline">Learn to code — Python, C++, Web & AI/ML courses for kids and beginners, step by step.</div>
       <div class="app-tags"><span>Coding</span><span>Courses</span><span>Kids</span><span>AI/ML</span></div>
-      <a class="app-link" href="https://play.google.com/store/search?q=We%20With%20All%204%20Students" target="_blank" rel="noopener">Get App <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
+      <a class="app-link" href="https://play.google.com/store/search?q=We%20With%20All%204%20Students" target="_blank" rel="noopener" onclick="event.stopPropagation()">Get App <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
     </div>
-    <div class="app-card reveal">
-      <span class="glow"></span>
-      <div class="phone"><img src="assets/apps/careerpro.png" alt="CareerPro AI app"><div class="notch"></div><div class="bar"></div></div>
+    <div class="app-card reveal tappable" onclick="openAppModal(3)">
+          <span class="glow"></span>
+          <div class="phone"><img src="assets/shots/career/1.png" alt="CareerPro AI app"><div class="notch"></div><div class="bar"></div></div>
       <div class="app-name">CareerPro <span class="grad">AI</span></div>
       <div class="app-tagline">Your AI career toolkit — resume builder, mock interview coach, skill gap analyzer & career finder.</div>
       <div class="app-tags"><span>AI</span><span>Resume</span><span>Interview</span><span>Career</span></div>
-      <a class="app-link" href="https://play.google.com/store/search?q=CareerPro%20AI" target="_blank" rel="noopener">Get App <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
+      <a class="app-link" href="https://play.google.com/store/search?q=CareerPro%20AI" target="_blank" rel="noopener" onclick="event.stopPropagation()">Get App <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
     </div>
-    <div class="app-card reveal">
-      <span class="glow"></span>
-      <div class="phone"><img src="assets/apps/govtjobs.png" alt="Govt Jobs India app"><div class="notch"></div><div class="bar"></div></div>
+    <div class="app-card reveal tappable" onclick="openAppModal(4)">
+          <span class="glow"></span>
+          <div class="phone"><img src="assets/shots/govt/1.png" alt="Govt Jobs India app"><div class="notch"></div><div class="bar"></div></div>
       <div class="app-name">Govt <span class="grad">Jobs</span></div>
       <div class="app-tagline">Live Indian government job listings — UPSC, SSC, banking & more, with deadlines & eligibility.</div>
       <div class="app-tags"><span>Jobs</span><span>UPSC</span><span>SSC</span><span>Banking</span></div>
-      <a class="app-link" href="https://play.google.com/store/search?q=Govt%20Jobs%20India" target="_blank" rel="noopener">Get App <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
+      <a class="app-link" href="https://play.google.com/store/search?q=Govt%20Jobs%20India" target="_blank" rel="noopener" onclick="event.stopPropagation()">Get App <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
     </div>
   </div>
 </section>
@@ -569,6 +592,72 @@ document.querySelectorAll('.faq-q').forEach(q=>q.addEventListener('click',()=>q.
 
 // ---- mobile menu ----
 document.getElementById('menuBtn').addEventListener('click',()=>{const l=document.getElementById('navLinks');l.style.display=l.style.display==='flex'?'none':'flex';l.style.flexDirection='column';l.style.position='absolute';l.style.top='64px';l.style.left='0';l.style.right='0';l.style.background='rgba(255,255,255,.97)';l.style.boxShadow='0 20px 50px rgba(20,24,60,.15)';l.style.borderBottom='1px solid var(--line)';l.style.padding='20px';l.style.gap='18px';});
+
+// ---- app detail modal data + logic ----
+const APP_DATA=[
+  {name:"Karnataka Panchang",tag:"Offline Calendar",
+   desc:"Complete offline Hindu Panchang and festival calendar covering 1991–2035 — daily tithi & nakshatra, sunrise/sunset, Rahu Kalam and festival dates, in Kannada and English.",
+   feat:["Offline 1991–2035","Kannada · English","Muhurta & nakshatra","Festival calendar"],
+   shots:["assets/shots/panchang/1.png","assets/shots/panchang/2.png","assets/shots/panchang/3.png"],
+   cta:"https://play.google.com/store/search?q=Karnataka%20Panchang"},
+  {name:"AI Guruji",tag:"Vedic Astrology",
+   desc:"Your personalised Vedic astrology companion — daily Panchang, Kundli charts, Nakshatra, Muhurta, Mantras and remedies, fully on-device and bilingual.",
+   feat:["Kundli & Panchang","Nakshatra & Muhurta","Mantra & Remedies","Kannada · English"],
+   shots:["assets/shots/guruji/1.png","assets/shots/guruji/2.png","assets/shots/guruji/3.png"],
+   cta:"https://play.google.com/store/search?q=AI%20Guruji"},
+  {name:"We With All 4 Students",tag:"Learn to Code",
+   desc:"Fun, step-by-step coding courses for students — Python, C++, Web Development and AI & Machine Learning, with bite-sized interactive lessons, streaks and XP rewards.",
+   feat:["Python · C++ · Web · AI/ML","Karaoke-style lessons","Streaks & XP rewards","Beginner friendly"],
+   shots:["assets/shots/english/1.png","assets/shots/english/2.png","assets/shots/english/3.png"],
+   cta:"https://play.google.com/store/search?q=We%20With%20All%204%20Students"},
+  {name:"CareerPro AI",tag:"Career Toolkit",
+   desc:"Your AI career growth toolkit — build an ATS-optimised resume in seconds, practise mock interviews with real-time feedback, find your ideal career path and close skill gaps. One-time ₹499.",
+   feat:["AI Resume Builder","Mock Interview Coach","Skill Gap Analyzer","₹499 one-time"],
+   shots:["assets/shots/career/1.png","assets/shots/career/2.png","assets/shots/career/3.png"],
+   cta:"https://play.google.com/store/search?q=CareerPro%20AI"},
+  {name:"Govt Jobs",tag:"Govt Jobs",
+   desc:"Live Indian government job notifications — UPSC, SSC, Bank, Railways and state exams with deadlines, eligibility, salaries and post counts, updated daily.",
+   feat:["UPSC · SSC · Banking","Deadline & eligibility","Salary & posts info","Daily updates"],
+   shots:["assets/shots/govt/1.png","assets/shots/govt/2.png","assets/shots/govt/3.png"],
+   cta:"https://play.google.com/store/search?q=Govt%20Jobs%20India"}
+];
+let curApp=0;
+function openAppModal(i){
+  curApp=i;const a=APP_DATA[i];
+  document.getElementById('amName').textContent=a.name;
+  document.getElementById('amTag').textContent=a.tag;
+  document.getElementById('amDesc').textContent=a.desc;
+  document.getElementById('amChips').innerHTML=a.feat.map(f=>`<span>${f}</span>`).join('');
+  document.getElementById('amMain').src=a.shots[0];
+  document.getElementById('amThumbs').innerHTML=a.shots.map((s,j)=>`<img src="${s}" class="${j===0?'active':''}" alt="${a.name} screenshot ${j+1}" onclick="setShot(${j})">`).join('');
+  document.getElementById('amCta').href=a.cta;
+  document.getElementById('appModal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function setShot(j){
+  document.getElementById('amMain').src=APP_DATA[curApp].shots[j];
+  document.querySelectorAll('#amThumbs img').forEach((t,k)=>t.classList.toggle('active',k===j));
+}
+function closeAppModal(){
+  document.getElementById('appModal').classList.remove('open');
+  document.body.style.overflow='';
+}
+document.getElementById('appModal').addEventListener('click',e=>{if(e.target.id==='appModal')closeAppModal();});
+addEventListener('keydown',e=>{if(e.key==='Escape')closeAppModal();});
 </script>
+
+<!-- APP DETAIL MODAL -->
+<div class="modal-ov" id="appModal" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <button class="modal-x" onclick="closeAppModal()" aria-label="Close">&times;</button>
+    <h2 class="modal-h2" id="amName"></h2>
+    <span class="modal-tag" id="amTag"></span>
+    <p class="modal-desc" id="amDesc"></p>
+    <div class="modal-chips" id="amChips"></div>
+    <div class="modal-main"><img id="amMain" alt="App screenshot"></div>
+    <div class="modal-thumbs" id="amThumbs"></div>
+    <a class="modal-cta" id="amCta" href="#" target="_blank" rel="noopener">Get It On Play Store</a>
+  </div>
+</div>
 </body>
 </html>
